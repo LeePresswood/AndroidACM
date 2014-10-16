@@ -8,12 +8,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import leepresswood.com.stopwatch.R;
 
 public class ActivityMain extends Activity
 {
 	private TextView text_time;
 	private Button button_start, button_stop, button_reset;
+	private int hours, minutes, seconds, decimal;
+
+	private Timer timer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -26,6 +32,10 @@ public class ActivityMain extends Activity
 		button_start = (Button) findViewById(R.id.button_start);
 		button_stop = (Button) findViewById(R.id.button_stop);
 		button_reset = (Button) findViewById(R.id.button_reset);
+
+		timer = new Timer();
+
+		resetTime();
 	}
 
 	@Override
@@ -55,9 +65,8 @@ public class ActivityMain extends Activity
 		//Only want to do the functions if the button is enabled.
 		if(button_start.isEnabled())
 		{
-			button_start.setEnabled(false);
-			button_stop.setEnabled(true);
-			button_reset.setEnabled(false);
+			setButtonsEnabled(false, true, false);
+			timer.scheduleAtFixedRate(incrementTime(), 0, 100);
 		}
 	}
 
@@ -66,9 +75,8 @@ public class ActivityMain extends Activity
 		//Only want to do the functions if the button is enabled.
 		if(button_stop.isEnabled())
 		{
-			button_start.setEnabled(true);
-			button_stop.setEnabled(false);
-			button_reset.setEnabled(true);
+			setButtonsEnabled(true, false, true);
+			timer.cancel();
 		}
 	}
 
@@ -77,9 +85,58 @@ public class ActivityMain extends Activity
 		//Only want to do the functions if the button is enabled.
 		if(button_reset.isEnabled())
 		{
-			button_start.setEnabled(false);
-			button_stop.setEnabled(true);
-			button_reset.setEnabled(false);
+			resetTime();
 		}
+	}
+
+	private void setButtonsEnabled(boolean start, boolean stop, boolean reset)
+	{
+		button_start.setEnabled(start);
+		button_stop.setEnabled(stop);
+		button_reset.setEnabled(reset);
+	}
+
+	private void resetTime()
+	{
+		hours = 0;
+		minutes = 0;
+		seconds = 0;
+		decimal = 0;
+
+		text_time.setText(R.string.timer_default);
+	}
+
+	private TimerTask incrementTime()
+	{//Increment decimal. Change the rest as needed.
+		return new TimerTask()
+		{
+			@Override
+			public void run()
+			{
+				decimal++;
+				if(decimal == 10)
+				{
+					decimal = 0;
+					seconds++;
+
+					if(seconds == 60)
+					{
+						seconds = 0;
+						minutes++;
+
+						if(minutes == 60)
+						{
+							minutes = 0;
+							hours++;
+
+							if(hours == 100)
+							{
+								hours = 99;
+							}
+						}
+					}
+				}
+			}
+		};
 	}
 }
