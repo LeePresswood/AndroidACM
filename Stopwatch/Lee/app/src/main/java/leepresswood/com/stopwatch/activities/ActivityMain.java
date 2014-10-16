@@ -33,8 +33,6 @@ public class ActivityMain extends Activity
 		button_stop = (Button) findViewById(R.id.button_stop);
 		button_reset = (Button) findViewById(R.id.button_reset);
 
-		timer = new Timer();
-
 		resetTime();
 	}
 
@@ -66,14 +64,7 @@ public class ActivityMain extends Activity
 		if(button_start.isEnabled())
 		{
 			setButtonsEnabled(false, true, false);
-			runOnUiThread(new Runnable()
-			{
-				@Override
-				public void run()
-				{
-					timer.scheduleAtFixedRate(incrementTime(), 0, 100);
-				}
-			});
+			timer.scheduleAtFixedRate(incrementTime(), 0, 100);
 		}
 	}
 
@@ -83,6 +74,7 @@ public class ActivityMain extends Activity
 		if(button_stop.isEnabled())
 		{
 			setButtonsEnabled(true, false, true);
+			timer = new Timer();
 			timer.cancel();
 		}
 	}
@@ -145,12 +137,19 @@ public class ActivityMain extends Activity
 					}
 				}
 
-				//Change the text. Should always be double-digit in every field except decimal.
-				String hour_text = hours >= 10 ? hours.toString() : "0" + hours.toString();
-				String minute_text = minutes >= 10 ? minutes.toString() : "0" + minutes.toString();
-				String second_text = seconds >= 10 ? seconds.toString() : "0" + seconds.toString();
+				runOnUiThread(new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						//Change the text. Should always be double-digit in every field except decimal.
+						String hour_text = hours >= 10 ? hours.toString() : "0" + hours.toString();
+						String minute_text = minutes >= 10 ? minutes.toString() : "0" + minutes.toString();
+						String second_text = seconds >= 10 ? seconds.toString() : "0" + seconds.toString();
 
-				text_time.setText(hour_text + ":" + minute_text + ":" + second_text + "." + decimal.toString());
+						text_time.setText(hour_text + ":" + minute_text + ":" + second_text + "." + decimal.toString());
+					}
+				});
 			}
 		};
 	}
