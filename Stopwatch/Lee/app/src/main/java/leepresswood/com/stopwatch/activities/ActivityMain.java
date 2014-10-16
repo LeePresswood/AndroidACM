@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
 import leepresswood.com.stopwatch.R;
 
 public class ActivityMain extends Activity
@@ -38,4 +40,19 @@ public class ActivityMain extends Activity
         }
         return super.onOptionsItemSelected(item);
     }
+
+	public void start(View view)
+	{
+
+	}
+
+	public void stop(View view)
+	{
+
+	}
+
+	public void reset(View view)
+	{
+
+	}
 }
