@@ -66,7 +66,14 @@ public class ActivityMain extends Activity
 		if(button_start.isEnabled())
 		{
 			setButtonsEnabled(false, true, false);
-			timer.scheduleAtFixedRate(incrementTime(), 0, 100);
+			runOnUiThread(new Runnable()
+			{
+				@Override
+				public void run()
+				{
+					timer.scheduleAtFixedRate(incrementTime(), 0, 100);
+				}
+			});
 		}
 	}
 
