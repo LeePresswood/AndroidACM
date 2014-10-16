@@ -1,7 +1,56 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="leepresswood.com.stopwatch.activities.ActivityMain">
 
-</FrameLayout>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="00:00:00.0"
+		android:id="@+id/textView"
+		android:layout_gravity="center_horizontal|top"
+		android:autoText="false"
+		android:singleLine="true"
+		android:textSize="72dp"
+		android:textIsSelectable="false"
+		android:textStyle="bold"
+		android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true" />
+
+	<TableLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:layout_below="@+id/textView"
+		android:layout_centerHorizontal="true">
+
+		<TableRow
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:baselineAligned="false"
+			android:clickable="false"
+			android:paddingLeft="15dp"
+			android:paddingRight="15dp">
+
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/button_start"
+				android:id="@+id/button" />
+
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="New Button"
+				android:id="@+id/button2" />
+
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="New Button"
+				android:id="@+id/button3" />
+		</TableRow>
+	</TableLayout>
+
+</RelativeLayout>
