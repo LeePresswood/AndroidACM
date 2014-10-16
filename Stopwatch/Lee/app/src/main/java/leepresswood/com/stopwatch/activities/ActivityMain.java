@@ -64,6 +64,7 @@ public class ActivityMain extends Activity
 		if(button_start.isEnabled())
 		{
 			setButtonsEnabled(false, true, false);
+			timer = new Timer();
 			timer.scheduleAtFixedRate(incrementTime(), 0, 100);
 		}
 	}
@@ -74,7 +75,6 @@ public class ActivityMain extends Activity
 		if(button_stop.isEnabled())
 		{
 			setButtonsEnabled(true, false, true);
-			timer = new Timer();
 			timer.cancel();
 		}
 	}
