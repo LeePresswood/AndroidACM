@@ -7,8 +7,8 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:text="00:00:00.0"
-		android:id="@+id/textView"
+		android:text="@string/timer_default"
+		android:id="@+id/text_time"
 		android:layout_gravity="center_horizontal|top"
 		android:singleLine="true"
 		android:textSize="72sp"
@@ -19,7 +19,7 @@
 	<TableLayout
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:layout_below="@+id/textView"
+		android:layout_below="@+id/text_time"
 		android:layout_centerHorizontal="true">
 		<TableRow
 			android:layout_width="fill_parent"
@@ -34,7 +34,7 @@
 				android:layout_weight="0.33"
 				android:text="@string/button_start"
 				android:enabled="true"
-				android:id="@+id/button"
+				android:id="@+id/button_start"
 				android:onClick="start"/>
 			<Button
 				android:layout_width="0dp"
@@ -42,7 +42,7 @@
 				android:layout_weight="0.33"
 				android:text="@string/button_stop"
 				android:enabled="false"
-				android:id="@+id/button2"
+				android:id="@+id/button_stop"
 				android:onClick="stop"/>
 			<Button
 				android:layout_width="0dp"
@@ -50,7 +50,7 @@
 				android:layout_weight="0.33"
 				android:text="@string/button_reset"
 				android:enabled="true"
-				android:id="@+id/button3"
+				android:id="@+id/button_reset"
 				android:onClick="reset"/>
 		</TableRow>
 	</TableLayout>
