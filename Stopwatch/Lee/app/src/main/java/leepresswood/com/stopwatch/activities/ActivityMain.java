@@ -17,7 +17,7 @@ public class ActivityMain extends Activity
 {
 	private TextView text_time;
 	private Button button_start, button_stop, button_reset;
-	private int hours, minutes, seconds, decimal;
+	private Integer hours, minutes, seconds, decimal;
 
 	private Timer timer;
 
@@ -113,6 +113,7 @@ public class ActivityMain extends Activity
 			@Override
 			public void run()
 			{
+				//Run the increment logic
 				decimal++;
 				if(decimal == 10)
 				{
@@ -136,6 +137,13 @@ public class ActivityMain extends Activity
 						}
 					}
 				}
+
+				//Change the text. Should always be double-digit in every field except decimal.
+				String hour_text = hours >= 10 ? hours.toString() : "0" + hours.toString();
+				String minute_text = minutes >= 10 ? minutes.toString() : "0" + minutes.toString();
+				String second_text = seconds >= 10 ? seconds.toString() : "0" + seconds.toString();
+
+				text_time.setText(hour_text + ":" + minute_text + ":" + second_text + "." + decimal.toString());
 			}
 		};
 	}
